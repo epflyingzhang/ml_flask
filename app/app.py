@@ -16,9 +16,9 @@ def hello_world():
         return render_template('index.html', href='static/base.svg')
     else:
         text = request.form['text']
-        path = "static/{}.svg".format(uuid.uuid4().hex)
-        make_picture('AgesAndHeights.pkl', load('model.joblib'), floats_string_to_np_arr(text), path)
-        return render_template('index.html', href=path)
+        path = "app/static/{}.svg".format(uuid.uuid4().hex)
+        make_picture('app/AgesAndHeights.pkl', load('app/model.joblib'), floats_string_to_np_arr(text), path)
+        return render_template('index.html', href=path[4:])
 
 
 def make_picture(training_data_filename, model, new_inp_np_arr, ouput_file):
